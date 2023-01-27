@@ -73,11 +73,11 @@ void heapify(int arr[],int n,int i){
     int leftChild=2*i ;
     int rightChild=2*i+1;
 
-    if(leftChild < n && arr[leftChild]>arr[parent]){
+    if(leftChild <= n && arr[leftChild]>arr[parent]){
         
         parent=leftChild;
     }
-    if(rightChild<n && arr[rightChild]>arr[parent]){
+    if(rightChild<=n && arr[rightChild]>arr[parent]){
         
         parent=rightChild;
     }
@@ -85,6 +85,15 @@ void heapify(int arr[],int n,int i){
         swap(arr[parent],arr[i]);
         heapify(arr,n,parent);
     }
+}
+void heapSort(int arr[],int n){
+    int size=n;
+    while(size>1){
+        swap(arr[size],arr[1]);
+        size--;
+        heapify(arr,size,1);
+    }
+    
 }
 int main(){
     heap h;
@@ -110,6 +119,13 @@ int main(){
             cout<<arr[i]<<" ";
         }
         cout<<endl;
+
+    cout<<"after heap sort"<<endl;
+    heapSort(arr,n);
+    for(int i=1;i<=n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
 
     return 0;
 }
